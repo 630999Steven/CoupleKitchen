@@ -1,0 +1,9 @@
+{
+  "name": "sendNotify",
+  "version": "1.0.0",
+  "description": "发送订阅消息通知云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

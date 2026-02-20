@@ -1,0 +1,75 @@
+<view class="container">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <image class="header-mascot" src="/images/123.jpg" mode="aspectFit"></image>
+    <view class="header-info">
+      <text class="header-title">{{appName}}</text>
+      <text class="header-subtitle">和{{partnerName}}的专属小厨房</text>
+    </view>
+  </view>
+
+  <!-- 设置列表 -->
+  <view class="settings-section">
+    <view class="section-title">账号信息</view>
+    <view class="settings-card">
+      <view class="settings-item">
+        <text class="item-icon">👤</text>
+        <text class="item-label">我的身份</text>
+        <text class="item-value">{{userName}}</text>
+      </view>
+      <view class="settings-item">
+        <text class="item-icon">💕</text>
+        <text class="item-label">我的另一半</text>
+        <text class="item-value">{{partnerName}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="settings-section">
+    <view class="section-title">数据统计</view>
+    <view class="settings-card">
+      <view class="settings-item">
+        <text class="item-icon">🍽️</text>
+        <text class="item-label">菜品总数</text>
+        <text class="item-value">{{dishCount}} 道</text>
+      </view>
+      <view class="settings-item">
+        <text class="item-icon">📋</text>
+        <text class="item-label">点菜次数</text>
+        <text class="item-value">{{orderCount}} 次</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="settings-section">
+    <view class="section-title">消息通知</view>
+    <view class="settings-card">
+      <view class="settings-item" bindtap="requestNotifyPermission">
+        <text class="item-icon">🔔</text>
+        <text class="item-label">订阅消息</text>
+        <text class="item-arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="settings-section">
+    <view class="section-title">关于</view>
+    <view class="settings-card">
+      <view class="settings-item">
+        <text class="item-icon">📱</text>
+        <text class="item-label">版本号</text>
+        <text class="item-value">v1.0.0</text>
+      </view>
+      <view class="settings-item" bindtap="copyWechat">
+        <text class="item-icon">💬</text>
+        <text class="item-label">联系作者</text>
+        <text class="item-arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部版权 -->
+  <view class="footer">
+    <text class="footer-text">Made with 💚 for {{partnerName}}</text>
+  </view>
+</view>

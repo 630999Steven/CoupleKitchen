@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/MainPage/index",
+    "pages/Dishes/index",
+    "pages/DishAdd/index",
+    "pages/DishDetail/index",
+    "pages/Order/index",
+    "pages/OrderHistory/index",
+    "pages/OrderDetail/index",
+    "pages/Settings/index"
+  ],
+  "window": {
+    "backgroundColor": "#F5F9F0",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#7CB342",
+    "navigationBarTitleText": "帕恰狗的小厨房",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#7CB342",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/MainPage/index",
+      "iconPath": "images/TabBar/HomeIconGrey.png",
+      "selectedIconPath": "images/TabBar/HomeIconColor.png",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/Order/index",
+      "iconPath": "images/TabBar/MarketIconGrey.png",
+      "selectedIconPath": "images/TabBar/MarketIconColor.png",
+      "text": "点菜"
+    }, {
+      "pagePath": "pages/Dishes/index",
+      "iconPath": "images/TabBar/MissionIconGrey.png",
+      "selectedIconPath": "images/TabBar/MissionIconColor.png",
+      "text": "菜品库"
+    }, {
+      "pagePath": "pages/OrderHistory/index",
+      "iconPath": "images/TabBar/AccountIconGrey.png",
+      "selectedIconPath": "images/TabBar/AccountIconColor.png",
+      "text": "历史"
+    }]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "cloud": true,
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

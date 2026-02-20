@@ -1,0 +1,262 @@
+/* 首页样式 - 帕恰狗主题 */
+
+.container {
+  padding: 0;
+  padding-bottom: 180rpx;
+}
+
+/* 欢迎区域 */
+.welcome-section {
+  width: 100%;
+  background: linear-gradient(135deg, #7CB342 0%, #AED581 100%);
+  padding: 60rpx 40rpx 80rpx;
+  border-radius: 0 0 60rpx 60rpx;
+}
+
+.welcome-card {
+  display: flex;
+  align-items: center;
+}
+
+.pochacco-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: white;
+  margin-right: 30rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+
+.emoji-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: white;
+  margin-right: 30rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+}
+
+.avatar-image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: white;
+  margin-right: 30rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+
+.empty-emoji {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+  border-radius: 20rpx;
+}
+
+.welcome-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.greeting {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 8rpx;
+}
+
+.sub-greeting {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 通用区域标题 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin: 40rpx 16rpx 20rpx;
+}
+
+/* 今日状态 */
+.status-section {
+  margin-top: 0;
+  padding: 0 16rpx;
+}
+
+.status-card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 8rpx 30rpx rgba(124, 179, 66, 0.15);
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.status-label {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.status-time {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.status-dishes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.dish-tag {
+  background: #E8F5E9;
+  color: #558B2F;
+  padding: 12rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+}
+
+.empty-card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 60rpx 30rpx;
+  box-shadow: 0 8rpx 30rpx rgba(124, 179, 66, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-icon {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 30rpx;
+}
+
+.btn-primary {
+  padding: 20rpx 50rpx;
+  background: linear-gradient(135deg, #7CB342 0%, #558B2F 100%);
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  color: white;
+  font-weight: 500;
+}
+
+/* 快捷操作 */
+.quick-section {
+  padding: 0 16rpx;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+  background: white;
+  border-radius: 24rpx;
+  padding: 30rpx 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(124, 179, 66, 0.1);
+}
+
+.quick-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quick-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  margin-bottom: 12rpx;
+}
+
+.quick-label {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 统计区域 */
+.stats-section {
+  padding: 0 16rpx;
+}
+
+.stats-card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 40rpx 30rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(124, 179, 66, 0.1);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #7CB342;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.stat-divider {
+  width: 2rpx;
+  height: 60rpx;
+  background: #E8F5E9;
+}
+
+/* 底部装饰 */
+.footer-decoration {
+  padding: 60rpx 30rpx;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-mascot {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 12rpx;
+}
+
+.footer-text {
+  font-size: 26rpx;
+  color: #AED581;
+}

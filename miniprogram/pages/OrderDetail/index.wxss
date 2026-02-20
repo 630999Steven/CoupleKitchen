@@ -1,0 +1,138 @@
+.container {
+  padding: 24rpx;
+  min-height: 100vh;
+  background: #F5F9F0;
+}
+
+/* 头部卡片 */
+.header-card {
+  background: linear-gradient(135deg, #7CB342 0%, #AED581 100%);
+  border-radius: 24rpx;
+  padding: 40rpx 30rpx;
+  margin-bottom: 24rpx;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.header-date {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: white;
+}
+
+.header-time {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.header-creator {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* 区块 */
+.section {
+  background: white;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(124, 179, 66, 0.1);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 24rpx;
+}
+
+.section-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.dish-total {
+  margin-left: auto;
+  font-size: 26rpx;
+  color: #7CB342;
+  font-weight: normal;
+}
+
+/* 菜品列表 */
+.dish-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.dish-item {
+  display: flex;
+  align-items: center;
+  background: #F5F9F0;
+  border-radius: 16rpx;
+  padding: 16rpx;
+}
+
+.dish-image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 12rpx;
+  background: #E8F5E9;
+}
+
+.dish-name {
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+
+/* 备注 */
+.remark-card {
+  background: #FFF9E6;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.remark-text {
+  font-size: 28rpx;
+  color: #996600;
+  line-height: 1.6;
+}
+
+/* 再来一单按钮 */
+.reorder-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7CB342 0%, #558B2F 100%);
+  color: white;
+  font-size: 32rpx;
+  font-weight: 500;
+  padding: 28rpx;
+  border-radius: 50rpx;
+  margin-top: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(124, 179, 66, 0.3);
+}
+
+.reorder-icon {
+  font-size: 36rpx;
+  margin-right: 12rpx;
+}
+
+/* 加载中 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  color: #999;
+  font-size: 28rpx;
+}

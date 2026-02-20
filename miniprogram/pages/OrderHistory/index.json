@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mp-slideview": "../../miniprogram_npm/weui-miniprogram/slideview/slideview"
+  },
+  "navigationBarTitleText": "荔荔的私人厨房"
+}

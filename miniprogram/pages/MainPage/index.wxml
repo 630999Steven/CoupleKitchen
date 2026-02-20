@@ -1,0 +1,85 @@
+<view class="container">
+  <!-- 顶部欢迎区域 -->
+  <view class="welcome-section">
+    <view class="welcome-card">
+      <image class="avatar-image" src="/images/123.jpg" mode="aspectFit"></image>
+      <view class="welcome-text">
+        <text class="greeting">{{greeting}}，{{partnerName}}！</text>
+        <text class="sub-greeting">今天想吃点什么呀？</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日状态卡片 -->
+  <view class="status-section">
+    <view class="section-title">🍽️ 今日点菜</view>
+    <view class="status-card" wx:if="{{todayOrder}}">
+      <view class="status-header">
+        <text class="status-label">{{todayOrder.creatorName}} 点了菜</text>
+        <text class="status-time">{{todayOrder.timeText}}</text>
+      </view>
+      <view class="status-dishes">
+        <view class="dish-tag" wx:for="{{todayOrder.dishes}}" wx:key="index">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+    <view class="empty-card" wx:else>
+      <image class="empty-image" src="/images/bc5fd6af900184aaa9ebabeb236e76b0.gif" mode="aspectFit"></image>
+      <text class="empty-text">今天还没有点菜哦~</text>
+      <view class="btn-primary" bindtap="goToOrder">去点菜</view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-section">
+    <view class="section-title">⚡ 快捷操作</view>
+    <view class="quick-grid">
+      <view class="quick-item" bindtap="goToOrder">
+        <view class="quick-icon" style="background: #E8F5E9;">🍜</view>
+        <text class="quick-label">点菜</text>
+      </view>
+      <view class="quick-item" bindtap="goToDishes">
+        <view class="quick-icon" style="background: #FFF3E0;">📖</view>
+        <text class="quick-label">菜品库</text>
+      </view>
+      <view class="quick-item" bindtap="goToHistory">
+        <view class="quick-icon" style="background: #E3F2FD;">📋</view>
+        <text class="quick-label">历史</text>
+      </view>
+      <view class="quick-item" bindtap="requestSubscribeMessage">
+        <view class="quick-icon" style="background: #FCE4EC;">🔔</view>
+        <text class="quick-label">订阅通知</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 菜品统计 -->
+  <view class="stats-section">
+    <view class="section-title">📊 小厨房统计</view>
+    <view class="stats-card">
+      <view class="stat-item">
+        <text class="stat-number">{{dishCount}}</text>
+        <text class="stat-label">菜品总数</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-number">{{orderCount}}</text>
+        <text class="stat-label">点菜次数</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-number">{{togetherDays}}</text>
+        <text class="stat-label">一起吃饭</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部装饰 -->
+  <view class="footer-decoration">
+    <view class="footer-content">
+      <image class="footer-mascot" src="/images/4aa65830d0f97dad0cb40d992405e6cc-removebg-preview.png" mode="aspectFit"></image>
+      <text class="footer-text">帕恰狗祝你们用餐愉快 ~</text>
+    </view>
+  </view>
+</view>

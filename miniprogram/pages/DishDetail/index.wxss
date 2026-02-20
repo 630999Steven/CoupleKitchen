@@ -1,0 +1,102 @@
+/* 菜品详情页样式 */
+
+.container {
+  padding-bottom: 40rpx;
+}
+
+/* 菜品图片 */
+.dish-image-wrapper {
+  width: 100%;
+}
+
+.dish-image {
+  width: 100%;
+  display: block;
+}
+
+.dish-image.dish-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 200rpx;
+}
+
+/* 信息卡片 */
+.dish-info-card {
+  margin: 24rpx;
+  padding: 40rpx;
+  background: white;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 40rpx rgba(124, 179, 66, 0.15);
+}
+
+.dish-name {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 40rpx;
+  text-align: center;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #F5F9F0;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-icon {
+  font-size: 32rpx;
+  margin-right: 16rpx;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #999;
+  width: 140rpx;
+}
+
+.info-value {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 操作按钮 */
+.action-buttons {
+  padding: 0 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.btn-edit {
+  padding: 28rpx;
+  background: linear-gradient(135deg, #7CB342 0%, #558B2F 100%);
+  border-radius: 50rpx;
+  text-align: center;
+}
+
+.btn-edit text {
+  font-size: 32rpx;
+  color: white;
+  font-weight: 500;
+}
+
+.btn-delete {
+  padding: 28rpx;
+  background: white;
+  border: 2rpx solid #E57373;
+  border-radius: 50rpx;
+  text-align: center;
+}
+
+.btn-delete text {
+  font-size: 32rpx;
+  color: #E57373;
+  font-weight: 500;
+}

@@ -1,0 +1,65 @@
+<view class="container">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-title">{{isEdit ? '编辑菜品' : '添加菜品'}}</text>
+    <text class="page-subtitle">{{isEdit ? '修改菜品信息' : '给小厨房添加新成员 ~'}}</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <!-- 图片上传 -->
+    <view class="upload-card" bindtap="chooseImage">
+      <image wx:if="{{imageUrl}}" class="preview-image" src="{{imageUrl}}" mode="aspectFill"></image>
+      <view wx:else class="upload-placeholder">
+        <text class="upload-icon">📷</text>
+        <text class="upload-text">点击上传菜品图片</text>
+        <text class="upload-hint">支持从相册选择或拍照</text>
+      </view>
+    </view>
+
+    <!-- 菜品名称 -->
+    <view class="input-card">
+      <view class="input-label">
+        <text class="label-icon">🍽️</text>
+        <text class="label-text">菜品名称</text>
+      </view>
+      <input class="input-field" placeholder="给这道菜起个名字吧"
+             placeholderClass="input-placeholder"
+             bindinput="onNameInput" value="{{name}}" maxlength="20" />
+      <text class="input-counter">{{name.length}}/20</text>
+    </view>
+
+    <!-- 菜品分类 -->
+    <view class="input-card">
+      <view class="input-label">
+        <text class="label-icon">📂</text>
+        <text class="label-text">菜品分类</text>
+      </view>
+      <picker mode="selector" range="{{categories}}" range-key="name" value="{{categoryIndex}}" bindchange="onCategoryChange">
+        <view class="picker-value">
+          <text>{{categories[categoryIndex].icon}} {{categories[categoryIndex].name}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 菜品描述 -->
+    <view class="input-card">
+      <view class="input-label">
+        <text class="label-icon">💬</text>
+        <text class="label-text">一句话描述</text>
+        <text class="label-optional">（选填）</text>
+      </view>
+      <input class="input-field" placeholder="例如：超下饭"
+             placeholderClass="input-placeholder"
+             bindinput="onDescInput" value="{{description}}" maxlength="5" />
+      <text class="input-counter">{{description.length}}/5</text>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="footer">
+    <view class="btn-reset" bindtap="resetForm">重置</view>
+    <view class="btn-save" bindtap="saveDish">{{isEdit ? '保存修改' : '保存菜品'}}</view>
+  </view>
+</view>

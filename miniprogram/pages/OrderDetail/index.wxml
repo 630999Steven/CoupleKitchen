@@ -1,0 +1,48 @@
+<view class="container" wx:if="{{order}}">
+  <!-- 头部信息 -->
+  <view class="header-card">
+    <view class="header-row">
+      <text class="header-date">{{order.dateText}}</text>
+      <text class="header-time">{{order.timeText}}</text>
+    </view>
+    <view class="header-creator">{{order.creatorName}}点的菜</view>
+  </view>
+
+  <!-- 菜品列表 -->
+  <view class="section">
+    <view class="section-title">
+      <text class="section-icon">🍽️</text>
+      <text>菜品清单</text>
+      <text class="dish-total">共{{order.dishes.length}}道</text>
+    </view>
+    <view class="dish-list">
+      <view class="dish-item" wx:for="{{order.dishes}}" wx:key="_id">
+        <image class="dish-image" wx:if="{{item.imageUrl}}" src="{{item.imageUrl}}" mode="aspectFill"></image>
+        <image class="dish-image" wx:else src="/images/1efe5aea4d976b0e8597d4ffd5c068bc.jpg" mode="aspectFill"></image>
+        <text class="dish-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="section" wx:if="{{order.remark}}">
+    <view class="section-title">
+      <text class="section-icon">💬</text>
+      <text>备注</text>
+    </view>
+    <view class="remark-card">
+      <text class="remark-text">{{order.remark}}</text>
+    </view>
+  </view>
+
+  <!-- 再来一单按钮 -->
+  <view class="reorder-btn" bindtap="reorder">
+    <text class="reorder-icon">🔄</text>
+    <text>再来一单</text>
+  </view>
+</view>
+
+<!-- 加载中 -->
+<view class="loading" wx:if="{{loading}}">
+  <text>加载中...</text>
+</view>

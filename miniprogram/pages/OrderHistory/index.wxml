@@ -1,0 +1,63 @@
+<view class="container">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-title">点菜历史</text>
+    <text class="page-subtitle">和{{partnerName}}一起的美食记录 ~</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{orders.length === 0 && !loading}}">
+    <image class="empty-image" src="/images/a225e0f387212ab7446c87b790a202d3.jpg" mode="aspectFit"></image>
+    <text class="empty-title">还没有点菜记录</text>
+    <text class="empty-desc">快去点菜吧~</text>
+  </view>
+
+  <!-- 历史列表 -->
+  <view class="history-list" wx:if="{{orders.length > 0}}">
+    <mp-slideview wx:for="{{orders}}" wx:key="_id" buttons="{{item.slideButtons}}" data-id="{{item._id}}" data-marked="{{item.marked}}" bindbuttontap="onSlideButtonTap">
+      <view class="history-item animate-fadeIn {{item.marked ? 'marked' : ''}}" data-id="{{item._id}}" bindtap="goToDetail">
+        <view class="history-header">
+          <view class="history-date">
+            <text class="date-icon">📅</text>
+            <text class="date-text">{{item.dateText}}</text>
+          </view>
+          <text class="history-time">{{item.timeText}}</text>
+        </view>
+        <view class="history-dishes">
+          <view class="history-dish" wx:for="{{item.dishes}}" wx:for-item="dish" wx:key="_id">
+            <image class="history-dish-image" wx:if="{{!dish.imageUrl}}" src="/images/a225e0f387212ab7446c87b790a202d3.jpg" mode="aspectFill"></image>
+            <image class="history-dish-image" wx:if="{{dish.imageUrl}}" src="{{dish.imageUrl}}" mode="aspectFill"></image>
+            <text class="history-dish-name">{{dish.name}}</text>
+          </view>
+        </view>
+        <view class="history-remark" wx:if="{{item.remark}}">
+          <text class="remark-icon">💬</text>
+          <text class="remark-text">{{item.remark}}</text>
+        </view>
+        <view class="history-footer">
+          <text class="history-creator">{{item.creatorName}} 点的菜</text>
+          <text class="dish-count">共 {{item.dishes.length}} 道</text>
+        </view>
+      </view>
+    </mp-slideview>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore}}" bindtap="loadMore">
+    <text>加载更多</text>
+  </view>
+
+  <!-- 没有更多了 -->
+  <view class="no-more" wx:if="{{orders.length > 0 && !hasMore}}">
+    <text>~ 已经到底啦 ~</text>
+  </view>
+
+  <!-- 提示弹窗 -->
+  <view class="tip-modal" wx:if="{{showTipModal}}" bindtap="closeTipModal">
+    <view class="tip-content" catchtap="preventClose">
+      <image class="tip-image" src="/images/7b4bee27a7ccb84274ec7753e54c50c7.gif" mode="aspectFit"></image>
+      <text class="tip-text">{{tipText}}</text>
+      <view class="tip-btn" bindtap="closeTipModal">知道啦~</view>
+    </view>
+  </view>
+</view>
