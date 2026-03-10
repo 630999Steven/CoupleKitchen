@@ -43,6 +43,9 @@ App({
       appName: '帕恰狗的小厨房',
       version: '1.0.0',
 
+      // 订阅消息模板ID
+      notifyTmplIds: ['lFy-3Kj2HTuid-KZDiBQMpKppVHAQsy7G3KargWX1GY'],
+
       // 菜品分类（从数据库动态加载）
       categories: [],
       categoriesLoaded: false,
@@ -217,15 +220,10 @@ App({
     return user?.nickname && user?.avatarUrl
   },
 
-  // 页面绑定守卫：校验资料完整性和绑定状态，返回是否已绑定
+  // 页面绑定守卫：仅设置绑定状态到页面 data，不拦截页面展示
   bindGuard(page) {
-    if (!this.isProfileComplete()) {
-      wx.switchTab({ url: '/pages/MainPage/index' })
-      return false
-    }
-    const isBound = this.isBound()
-    page.setData({ isBound })
-    return isBound
+    page.setData({ isBound: this.isBound() })
+    return true
   },
 
   // 获取伴侣名字

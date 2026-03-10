@@ -12,6 +12,7 @@ Page({
     }
   },
 
+
   async loadOrder(id) {
     try {
       const res = await wx.cloud.callFunction({
@@ -69,11 +70,15 @@ Page({
   // 再来一单
   reorder() {
     const dishIds = this.data.order.dishes.map(d => d._id).join(',')
-    wx.switchTab({
-      url: '/pages/Order/index',
-      success: () => {
-        const app = getApp()
-        app.globalData.reorderDishIds = dishIds
+    wx.requestSubscribeMessage({
+      tmplIds: app.globalData.notifyTmplIds,
+      complete: () => {
+        wx.switchTab({
+          url: '/pages/Order/index',
+          success: () => {
+            app.globalData.reorderDishIds = dishIds
+          }
+        })
       }
     })
   },

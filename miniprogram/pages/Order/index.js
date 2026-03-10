@@ -397,17 +397,28 @@ Page({
   // 跳过备注
   skipRemark() {
     this.setData({ showRemarkModal: false })
-    this.doSubmitOrder('')
+    wx.requestSubscribeMessage({
+      tmplIds: app.globalData.notifyTmplIds,
+      complete: () => this.doSubmitOrder('')
+    })
   },
 
   // 确认备注
   confirmRemark() {
     this.setData({ showRemarkModal: false })
-    this.doSubmitOrder(this.data.remark)
+    wx.requestSubscribeMessage({
+      tmplIds: app.globalData.notifyTmplIds,
+      complete: () => this.doSubmitOrder(this.data.remark)
+    })
   },
 
   // 实际提交点菜
   async doSubmitOrder(remark) {
+    if (!app.isBound()) {
+      wx.showToast({ title: '请先绑定伴侣', icon: 'none' })
+      return
+    }
+
     const { selectedDishes } = this.data
 
     this.setData({ submitting: true })

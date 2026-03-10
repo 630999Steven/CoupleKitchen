@@ -252,54 +252,43 @@ button::after {
   background-color: #E57373 !important;
 }
 
-/* 未绑定提示覆盖层 */
-.unbind-overlay {
+/* 非阻断式顶部提醒横条 */
+.guard-banner {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 16rpx 30rpx;
   z-index: 999;
+  font-size: 26rpx;
 }
 
-.unbind-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60rpx 50rpx;
-  background: white;
-  border-radius: 32rpx;
-  margin: 60rpx;
-  box-shadow: 0 8rpx 40rpx rgba(124, 179, 66, 0.12);
+.guard-banner.profile {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
 }
 
-.unbind-icon {
-  font-size: 120rpx;
-  margin-bottom: 30rpx;
+.guard-banner.bind {
+  background: linear-gradient(135deg, #FFE0EC 0%, #FFCDD2 100%);
 }
 
-.unbind-title {
-  font-size: 36rpx;
-  font-weight: 600;
+.guard-banner-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.guard-banner-text {
+  flex: 1;
   color: #333;
-  margin-bottom: 16rpx;
+  font-weight: 500;
 }
 
-.unbind-desc {
-  font-size: 28rpx;
-  color: #999;
-  margin-bottom: 40rpx;
-}
-
-.unbind-btn {
-  padding: 24rpx 80rpx;
+.guard-banner-btn {
+  padding: 8rpx 28rpx;
   background: linear-gradient(135deg, #6FCF97 0%, #5AC476 100%);
-  border-radius: 50rpx;
-  font-size: 30rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
   color: white;
   font-weight: 500;
 }

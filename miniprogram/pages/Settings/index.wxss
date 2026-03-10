@@ -150,6 +150,28 @@
   color: #999;
 }
 
+/* 客服按钮：强制重置 button 默认样式 */
+.contact-btn {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding: 30rpx 24rpx !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  line-height: normal !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+  font-size: inherit !important;
+  color: inherit !important;
+  min-height: 0 !important;
+}
+
+.contact-btn::after {
+  display: none !important;
+}
+
 /* 弹窗样式 */
 .modal-mask {
   position: fixed;

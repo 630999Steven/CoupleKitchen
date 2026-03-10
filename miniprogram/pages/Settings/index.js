@@ -16,11 +16,21 @@ Page({
     saving: false,
   },
 
+  onLoad(options) {
+    if (options.editProfile) {
+      this._autoEditProfile = true
+    }
+  },
+
   async onShow() {
     await this.loadUserInfo()
     this.loadAppInfo()
     await this.loadStats()
     app.setKitchenTitle()
+    if (this._autoEditProfile) {
+      this._autoEditProfile = false
+      this.openEditProfile()
+    }
   },
 
   // 加载用户信息
@@ -147,12 +157,10 @@ Page({
 
   // 请求订阅消息权限
   requestNotifyPermission() {
-    const tmplIds = ['lFy-3Kj2HTuid-KZDiBQMpKppVHAQsy7G3KargWX1GY']
-
     wx.requestSubscribeMessage({
-      tmplIds,
+      tmplIds: app.globalData.notifyTmplIds,
       success: (res) => {
-        if (res[tmplIds[0]] === 'accept') {
+        if (res[app.globalData.notifyTmplIds[0]] === 'accept') {
           wx.showToast({ title: '订阅成功', icon: 'success' })
         } else {
           wx.showToast({ title: '需要授权才能收到通知', icon: 'none' })
@@ -164,13 +172,4 @@ Page({
     })
   },
 
-  // 复制微信号
-  copyWechat() {
-    wx.setClipboardData({
-      data: 'your_wechat_id',
-      success: () => {
-        wx.showToast({ title: '已复制微信号', icon: 'success' })
-      }
-    })
-  },
 })

@@ -227,7 +227,12 @@ Page({
   // 跳转到详情页
   goToDetail(e) {
     const id = e.currentTarget.dataset.id
-    wx.navigateTo({ url: `/pages/OrderDetail/index?id=${id}` })
+    wx.requestSubscribeMessage({
+      tmplIds: app.globalData.notifyTmplIds,
+      complete: () => {
+        wx.navigateTo({ url: `/pages/OrderDetail/index?id=${id}` })
+      }
+    })
   },
 
   // 下拉刷新

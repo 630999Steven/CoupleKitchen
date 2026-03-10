@@ -63,6 +63,7 @@
     </view>
   </view>
 
+
   <!-- 关于 -->
   <view class="settings-section">
     <view class="section-title">关于</view>
@@ -72,11 +73,11 @@
         <text class="item-label">版本号</text>
         <text class="item-value">v1.0.0</text>
       </view>
-      <view class="settings-item" bindtap="copyWechat">
+      <button class="settings-item contact-btn" open-type="contact">
         <text class="item-icon">💬</text>
         <text class="item-label">联系作者</text>
         <text class="item-arrow">></text>
-      </view>
+      </button>
     </view>
   </view>
 

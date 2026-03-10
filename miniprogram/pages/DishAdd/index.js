@@ -114,6 +114,11 @@ Page({
 
   // 保存菜品
   async saveDish() {
+    if (!app.isBound()) {
+      wx.showToast({ title: '请先绑定伴侣', icon: 'none' })
+      return
+    }
+
     const { name, saving, isEdit, _id } = this.data
 
     if (saving) return

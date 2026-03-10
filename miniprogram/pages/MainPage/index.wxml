@@ -41,8 +41,20 @@
     </view>
   </view>
 
+  <!-- profile 未完成提醒卡片 -->
+  <view wx:if="{{!profileComplete}}" class="bind-tip-section">
+    <view class="bind-tip-card profile-tip-card" bindtap="goToSetProfile">
+      <text class="bind-tip-icon">👤</text>
+      <view class="bind-tip-content">
+        <text class="bind-tip-title">还没有设置头像和昵称</text>
+        <text class="bind-tip-desc">点击设置，让伴侣认识你~</text>
+      </view>
+      <text class="bind-tip-arrow">></text>
+    </view>
+  </view>
+
   <!-- 未绑定提示 -->
-  <view wx:if="{{!isBound && userName}}" class="bind-tip-section">
+  <view wx:if="{{!isBound}}" class="bind-tip-section">
     <view class="bind-tip-card" bindtap="goToBind">
       <text class="bind-tip-icon">💕</text>
       <view class="bind-tip-content">
@@ -127,46 +139,6 @@
     <view class="footer-content">
       <image class="footer-mascot" src="/images/4aa65830d0f97dad0cb40d992405e6cc-removebg-preview.png" mode="aspectFit"></image>
       <text class="footer-text">帕恰狗祝你们用餐愉快 ~</text>
-    </view>
-  </view>
-
-  <!-- 设置头像昵称弹窗 -->
-  <view wx:if="{{showProfileModal}}" class="modal-mask" catchtap="preventClose">
-    <view class="modal-content profile-modal" catchtap="preventClose">
-      <view class="modal-header">
-        <text class="modal-title">欢迎来到帕恰狗的小厨房</text>
-        <text class="modal-subtitle">先设置一下你的头像和昵称吧</text>
-      </view>
-      <view class="modal-body">
-        <!-- 头像选择 -->
-        <view class="avatar-section">
-          <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
-            <image class="avatar-preview" src="{{tempAvatarUrl || 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'}}" mode="aspectFill"></image>
-            <view class="avatar-edit-icon">📷</view>
-          </button>
-          <text class="avatar-hint">点击选择头像</text>
-        </view>
-        <!-- 昵称输入 -->
-        <view class="nickname-section">
-          <text class="nickname-label">昵称</text>
-          <view class="nickname-input-wrap">
-            <input
-              class="nickname-input"
-              type="nickname"
-              placeholder="点击输入昵称"
-              value="{{tempNickname}}"
-              bindinput="onNicknameInput"
-            />
-          </view>
-          <view class="nickname-tip">
-            <text class="tip-icon">💡</text>
-            <text class="tip-text">点击输入框，键盘上方可选择微信昵称</text>
-          </view>
-        </view>
-      </view>
-      <view class="modal-footer">
-        <view class="modal-btn confirm full" bindtap="saveProfile">开始使用</view>
-      </view>
     </view>
   </view>
 </view>

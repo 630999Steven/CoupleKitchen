@@ -1,8 +1,10 @@
-<view class="unbind-overlay" wx:if="{{show}}">
-  <view class="unbind-card">
-    <text class="unbind-icon">🔗</text>
-    <text class="unbind-title">还未绑定伴侣</text>
-    <text class="unbind-desc">绑定后即可使用此功能~</text>
-    <view class="unbind-btn" bindtap="goToBind">去绑定</view>
-  </view>
+<view class="guard-banner profile" wx:if="{{show && type === 'profile'}}" bindtap="goToSetProfile">
+  <text class="guard-banner-icon">👤</text>
+  <text class="guard-banner-text">请先设置头像和昵称</text>
+  <view class="guard-banner-btn">去设置</view>
+</view>
+<view class="guard-banner bind" wx:elif="{{show && type === 'bind'}}" bindtap="goToBind">
+  <text class="guard-banner-icon">🔗</text>
+  <text class="guard-banner-text">还未绑定伴侣</text>
+  <view class="guard-banner-btn">去绑定</view>
 </view>
