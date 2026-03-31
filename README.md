@@ -1,4 +1,4 @@
-# CoupleKitchen - 情侣小厨房
+# PairBite - 情侣小厨房
 
 一个为情侣设计的微信小程序，帮助两个人一起管理菜品、每日点菜、记录饮食生活。
 
@@ -72,7 +72,7 @@
 ### 第一步：克隆项目
 
 ```bash
-git clone https://github.com/630999Steven/CoupleKitchen.git
+git clone https://github.com/630999Steven/PairBite.git
 ```
 
 ### 第二步：开通云开发
