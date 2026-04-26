@@ -14,6 +14,22 @@
 - **订阅通知**：点菜后自动向伴侣推送微信订阅消息
 - **厨房命名**：自定义小厨房名称，双方同步显示
 
+![c84c40c90154ea6fc2b2adffc075ce52](docs/images/c84c40c90154ea6fc2b2adffc075ce52.png)
+
+![ced1fa2bb3d78b4be40a7a57a82e0ed0](docs/images/ced1fa2bb3d78b4be40a7a57a82e0ed0.png)
+
+![7b068edcfe92965528ef43c1deda8aea](docs/images/7b068edcfe92965528ef43c1deda8aea.jpg)
+
+![6072e6da3beb9cac110266ec1c5d39bc](docs/images/6072e6da3beb9cac110266ec1c5d39bc.jpg)
+
+![ccd81f7db4ad334c1b7fb087730fe41d](docs/images/ccd81f7db4ad334c1b7fb087730fe41d.jpg)
+
+![a8629d338411f06bd52ba37041055e21](docs/images/a8629d338411f06bd52ba37041055e21.jpg)
+
+![026c99529da996b13d8ee25a6ae43887](docs/images/026c99529da996b13d8ee25a6ae43887.jpg)
+
+![0e23519901d16165b4380d1ac6e40f0e](docs/images/0e23519901d16165b4380d1ac6e40f0e.jpg)
+
 ## 技术栈
 
 | 层 | 技术 | 说明 |
@@ -175,6 +191,8 @@ const envList = [
 3. 回到【我的模板】，获取模板 ID 后，替换 `miniprogram/app.js` 中 `notifyTmplIds` 的值
 
 > 不配置此步骤不影响核心功能使用，只是不会推送通知。收不到消息看下方「常见问题」
+
+**注意**：如果你和我的模板/字段不完全相同，需要去自行替换每个字段的DATA ID，这里不赘述。
 
 ### 第七步：邀请体验成员（必做）
 
