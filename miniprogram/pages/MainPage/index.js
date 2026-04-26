@@ -157,11 +157,10 @@ Page({
 
   // 订阅消息
   async requestSubscribeMessage() {
-    const templateId = 'your-template-id'
     wx.requestSubscribeMessage({
-      tmplIds: [templateId],
+      tmplIds: app.globalData.notifyTmplIds,
       success: (res) => {
-        if (res[templateId] === 'accept') {
+        if (res[app.globalData.notifyTmplIds[0]] === 'accept') {
           wx.showToast({ title: '订阅成功', icon: 'success' })
         } else {
           wx.showToast({ title: '订阅失败', icon: 'none' })
