@@ -44,7 +44,7 @@ App({
       version: '1.0.0',
 
       // 订阅消息模板ID
-      notifyTmplIds: ['lFy-3Kj2HTuid-KZDiBQMpKppVHAQsy7G3KargWX1GY'],
+      notifyTmplIds: ['your-template-id'],
 
       // 菜品分类（从数据库动态加载）
       categories: [],

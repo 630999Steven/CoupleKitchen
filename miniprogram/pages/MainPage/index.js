@@ -157,7 +157,7 @@ Page({
 
   // 订阅消息
   async requestSubscribeMessage() {
-    const templateId = 'lFy-3Kj2HTuid-KZDiBQMpKppVHAQsy7G3KargWX1GY'
+    const templateId = 'your-template-id'
     wx.requestSubscribeMessage({
       tmplIds: [templateId],
       success: (res) => {
