@@ -483,6 +483,7 @@ Page({
         name: 'sendNotify',
         data: {
           type: 'newOrder',
+          templateId: app.globalData.notifyTmplIds[0],
           dishNames,
           count: dishes.length,
           remark,

@@ -118,6 +118,11 @@ Page({
       await this.loadUserInfo()
       wx.hideLoading()
       wx.showToast({ title: '绑定成功', icon: 'success' })
+      // 绑定成功后立即请求通知授权，为接收伴侣点菜通知积攒额度
+      wx.requestSubscribeMessage({
+        tmplIds: app.globalData.notifyTmplIds,
+        complete: () => {}
+      })
     } else {
       wx.hideLoading()
       wx.showToast({ title: result.message, icon: 'none' })

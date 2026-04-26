@@ -7,15 +7,16 @@ cloud.init({
 
 const db = cloud.database()
 
-// 订阅消息模板ID
-const TEMPLATE_ID = 'lFy-3Kj2HTuid-KZDiBQMpKppVHAQsy7G3KargWX1GY'
-
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const currentOpenid = wxContext.OPENID
 
-  const { type, dishNames, count, dishName, remark, orderId } = event
+  const { type, dishNames, count, dishName, remark, orderId, templateId } = event
+
+  if (!templateId) {
+    return { success: false, message: '缺少模板ID' }
+  }
 
   // 从 User 集合查询当前用户的伴侣
   let targetOpenid
@@ -38,7 +39,7 @@ exports.main = async (event, context) => {
       const pagePath = orderId ? `pages/OrderDetail/index?id=${orderId}` : 'pages/OrderHistory/index'
       result = await cloud.openapi.subscribeMessage.send({
         touser: targetOpenid,
-        templateId: TEMPLATE_ID,
+        templateId,
         page: pagePath,
         data: {
           time25: { value: formatTime(new Date()) },                    // 时间（精确到分钟）
@@ -50,7 +51,7 @@ exports.main = async (event, context) => {
     } else if (type === 'newDish') {
       result = await cloud.openapi.subscribeMessage.send({
         touser: targetOpenid,
-        templateId: TEMPLATE_ID,
+        templateId,
         page: 'pages/Dishes/index',
         data: {
           time25: { value: formatTime(new Date()) },                    // 时间

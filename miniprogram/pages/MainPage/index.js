@@ -196,42 +196,56 @@ Page({
   },
 
   // 跳转到最近点菜记录
-  async goToRecentOrder() {
-    try {
-      const res = await wx.cloud.callFunction({
-        name: 'getCoupleData',
-        data: {
-          collection: app.globalData.collectionOrderList,
-          orderBy: 'createTime',
-          order: 'desc',
-          limit: 1
+  goToRecentOrder() {
+    wx.requestSubscribeMessage({
+      tmplIds: app.globalData.notifyTmplIds,
+      complete: async () => {
+        try {
+          const res = await wx.cloud.callFunction({
+            name: 'getCoupleData',
+            data: {
+              collection: app.globalData.collectionOrderList,
+              orderBy: 'createTime',
+              order: 'desc',
+              limit: 1
+            }
+          })
+          if (res.result?.success && res.result.data?.length > 0) {
+            const order = res.result.data[0]
+            wx.navigateTo({ url: `/pages/OrderDetail/index?id=${order._id}` })
+          } else {
+            wx.switchTab({ url: '/pages/OrderHistory/index' })
+          }
+        } catch (e) {
+          console.error('goToRecentOrder error', e)
+          wx.switchTab({ url: '/pages/OrderHistory/index' })
         }
-      })
-      if (res.result?.success && res.result.data?.length > 0) {
-        const order = res.result.data[0]
-        wx.navigateTo({ url: `/pages/OrderDetail/index?id=${order._id}` })
-      } else {
-        wx.switchTab({ url: '/pages/OrderHistory/index' })
       }
-    } catch (e) {
-      console.error('goToRecentOrder error', e)
-      wx.switchTab({ url: '/pages/OrderHistory/index' })
-    }
+    })
   },
 
   // 跳转到绑定页
   goToBind() {
-    wx.navigateTo({ url: '/pages/Bind/index' })
+    wx.requestSubscribeMessage({
+      tmplIds: app.globalData.notifyTmplIds,
+      complete: () => wx.navigateTo({ url: '/pages/Bind/index' })
+    })
   },
 
   // 跳转到设置页
   goToSettings() {
-    wx.navigateTo({ url: '/pages/Settings/index' })
+    wx.requestSubscribeMessage({
+      tmplIds: app.globalData.notifyTmplIds,
+      complete: () => wx.navigateTo({ url: '/pages/Settings/index' })
+    })
   },
 
   // 跳转到类目管理
   goToCategoryManage() {
-    wx.navigateTo({ url: '/pages/CategoryManage/index' })
+    wx.requestSubscribeMessage({
+      tmplIds: app.globalData.notifyTmplIds,
+      complete: () => wx.navigateTo({ url: '/pages/CategoryManage/index' })
+    })
   },
 
   // 跳转到设置 profile
