@@ -45,10 +45,11 @@ Page({
         throw new Error(res.result?.message || '加载失败')
       }
 
-      const dishes = res.result.data.map(item => ({
+      let dishes = res.result.data.map(item => ({
         ...item,
         createTimeText: this.formatDate(item.createTime)
       }))
+      await app.convertFileURLs(dishes, ['imageUrl'])
 
       this.setData({
         dishes,

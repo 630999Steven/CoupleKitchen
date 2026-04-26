@@ -44,7 +44,7 @@ App({
       version: '1.0.0',
 
       // 订阅消息模板ID
-      notifyTmplIds: ['lFy-3Kj2HTuid-KZDiBQMpKppVHAQsy7G3KargWX1GY'],
+      notifyTmplIds: ['your-template-id'],
 
       // 菜品分类（从数据库动态加载）
       categories: [],
@@ -108,6 +108,17 @@ App({
     try {
       const res = await wx.cloud.callFunction({ name: 'createUser' })
       if (res.result && res.result.success) {
+        // 转换头像为临时链接
+        const avatarIds = [res.result.user?.avatarUrl, res.result.partner?.avatarUrl].filter(u => u && u.startsWith('cloud://'))
+        if (avatarIds.length > 0) {
+          const urlMap = await this.getTempFileURLs(avatarIds)
+          if (res.result.user?.avatarUrl && urlMap[res.result.user.avatarUrl]) {
+            res.result.user.avatarUrl = urlMap[res.result.user.avatarUrl]
+          }
+          if (res.result.partner?.avatarUrl && urlMap[res.result.partner.avatarUrl]) {
+            res.result.partner.avatarUrl = urlMap[res.result.partner.avatarUrl]
+          }
+        }
         this.globalData.currentUser = res.result.user
         this.globalData.partner = res.result.partner
         this.globalData.userLoaded = true
@@ -256,6 +267,75 @@ App({
   setKitchenTitle() {
     const title = this.getKitchenName()
     wx.setNavigationBarTitle({ title })
+  },
+
+  // 临时链接缓存（fileID -> { url, expireTime }）
+  _tempUrlCache: {},
+
+  // 批量将 cloud:// fileID 转为临时链接
+  async getTempFileURLs(fileIds) {
+    if (!fileIds || fileIds.length === 0) return {}
+
+    const now = Date.now()
+    const result = {}
+    const needFetch = []
+
+    for (const id of fileIds) {
+      if (!id || !id.startsWith('cloud://')) continue;
+      const cached = this._tempUrlCache[id]
+      if (cached && cached.expireTime > now) {
+        result[id] = cached.url
+      } else {
+        needFetch.push(id)
+      }
+    }
+
+    if (needFetch.length > 0) {
+      try {
+        const res = await wx.cloud.callFunction({
+          name: 'getFileURL',
+          data: { fileList: needFetch }
+        })
+        if (res.result?.success) {
+          for (const item of res.result.fileList) {
+            if (item.tempFileURL) {
+              result[item.fileID] = item.tempFileURL
+              // 缓存 1.5 小时（临时链接有效期约 2 小时）
+              this._tempUrlCache[item.fileID] = {
+                url: item.tempFileURL,
+                expireTime: now + 90 * 60 * 1000
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.error('getTempFileURLs error', e)
+      }
+    }
+
+    return result
+  },
+
+  // 批量转换数组中对象的指定字段为临时链接，原始值保留到 _raw_xxx
+  async convertFileURLs(items, fields) {
+    const allIds = []
+    for (const item of items) {
+      for (const field of fields) {
+        const val = item[field]
+        if (val && val.startsWith('cloud://')) allIds.push(val)
+      }
+    }
+    const urlMap = await this.getTempFileURLs(allIds)
+    for (const item of items) {
+      for (const field of fields) {
+        const raw = item[field]
+        if (urlMap[raw] && urlMap[raw] !== raw) {
+          item['_raw_' + field] = raw
+          item[field] = urlMap[raw]
+        }
+      }
+    }
+    return items
   },
 
   // 更新厨房名称（同步到伴侣）

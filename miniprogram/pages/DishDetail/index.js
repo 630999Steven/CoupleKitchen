@@ -53,6 +53,10 @@ Page({
       }
 
       const dish = res.result.data
+      if (dish.imageUrl) {
+        const urlMap = await app.getTempFileURLs([dish.imageUrl])
+        dish.imageUrl = urlMap[dish.imageUrl] || dish.imageUrl
+      }
       this.setData({
         dish,
         dateText: this.formatDate(dish.createTime),

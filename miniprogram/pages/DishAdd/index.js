@@ -45,10 +45,17 @@ Page({
 
       const dish = res.result.data
       const categoryIndex = this.data.categories.findIndex(c => c._id === dish.category) || 0
+      // 保留原始 fileID 用于保存，转换临时链接用于展示
+      let displayUrl = dish.imageUrl || ''
+      this._rawImageUrl = dish.imageUrl || ''
+      if (displayUrl.startsWith('cloud://')) {
+        const urlMap = await app.getTempFileURLs([displayUrl])
+        displayUrl = urlMap[displayUrl] || displayUrl
+      }
       this.setData({
         name: dish.name,
         description: dish.description || '',
-        imageUrl: dish.imageUrl || '',
+        imageUrl: displayUrl,
         categoryIndex: categoryIndex >= 0 ? categoryIndex : 0
       })
     } catch (e) {
@@ -132,7 +139,7 @@ Page({
     wx.showLoading({ title: '保存中...' })
 
     try {
-      let imageUrl = this.data.imageUrl
+      let imageUrl = this._rawImageUrl || this.data.imageUrl
 
       // 如果有新选择的图片，上传新图片
       if (this.data.tempFilePath) {

@@ -31,6 +31,13 @@ Page({
       order.dateText = this.formatDate(order.createTime)
       order.timeText = this.formatTime(order.createTime)
       order.creatorName = await this.getCreatorName(order._openid)
+      // 转换菜品图片和成品照片
+      await app.convertFileURLs(order.dishes || [], ['imageUrl'])
+      if (order.finishedPhoto) {
+        order._rawFinishedPhoto = order.finishedPhoto
+        const urlMap = await app.getTempFileURLs([order.finishedPhoto])
+        order.finishedPhoto = urlMap[order.finishedPhoto] || order.finishedPhoto
+      }
       this.setData({ order, loading: false })
     } catch (e) {
       console.error('加载订单失败', e)
@@ -129,7 +136,8 @@ Page({
       }
     })
 
-    this.setData({ 'order.finishedPhoto': fileID })
+    const urlMap = await app.getTempFileURLs([fileID])
+    this.setData({ 'order.finishedPhoto': urlMap[fileID] || fileID })
   },
 
   // 预览照片
@@ -157,10 +165,11 @@ Page({
         wx.showLoading({ title: '删除中...', mask: true })
 
         try {
-          // 删除云存储文件
-          if (this.data.order.finishedPhoto) {
+          // 删除云存储文件（使用原始 fileID）
+          const rawId = this.data.order._rawFinishedPhoto || this.data.order.finishedPhoto
+          if (rawId) {
             await wx.cloud.deleteFile({
-              fileList: [this.data.order.finishedPhoto]
+              fileList: [rawId]
             })
           }
 

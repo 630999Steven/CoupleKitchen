@@ -70,6 +70,7 @@ Page({
         selected: reorderIds.includes(item._id),
         category: item.category || 'meat'
       }))
+      await app.convertFileURLs(dishes, ['imageUrl'])
 
       const categories = app.globalData.categories || []
       if (categories.length === 0) {
@@ -434,7 +435,7 @@ Page({
           dishes: selectedDishes.map(item => ({
             _id: item._id,
             name: item.name,
-            imageUrl: item.imageUrl || '',
+            imageUrl: item._raw_imageUrl || item.imageUrl || '',
             category: item.category
           })),
           remark,
